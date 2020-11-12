@@ -1,11 +1,16 @@
 import discord
 from discord.ext import commands
-import os
-import sys
 import certifi
+
+import os
+import sys 
 import json
 
-client = commands.Bot(command_prefix="^")
+bot_prefix = "^"
+token = "Put your token here"
+
+
+client = commands.Bot(command_prefix=bot_prefix)
 
 @client.event
 async def on_ready():
@@ -29,7 +34,7 @@ async def on_ready():
 	#await client.change_presence(status=discord.Status.dnd, activity=discord.Game('Testing'))
 
 @client.command()
-async def msg(ctx, *,msg):
+async def msg(ctx, *, msg):
     embed=discord.Embed(
         title="Message Sent",
         description=f"**Sent To:** <@255876083918831616> \n**Message:** ```{msg}```"
@@ -45,4 +50,4 @@ async def msg(ctx, *,msg):
     os.system("node msg.js")
     await ctx.send(embed=embed)
 
-client.run("TOKEN")
+client.run(token)
